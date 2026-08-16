@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CleanFrame - Xoa icon video co quyen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="noise"></div>
+  <main>
+    <header class="hero">
+      <span class="eyebrow">LOCAL VIDEO REPAIR</span>
+      <h1>Giữ trọn khung hình.<br><em>Chỉ sửa vùng cần sửa.</em></h1>
+      <p>Chọn một icon tĩnh trên video bạn sở hữu. CleanFrame xử lý ngay trên máy, giữ nguyên độ phân giải, FPS, thời lượng và âm thanh.</p>
+    </header>
+
+    <section class="workspace">
+      <div class="stage-card">
+        <label class="dropzone" id="dropzone" for="videoInput">
+          <input id="videoInput" type="file" accept="video/mp4,video/quicktime,video/webm,.m4v">
+          <span class="drop-icon">+</span>
+          <strong>Thả video vào đây</strong>
+          <small>MP4, MOV, M4V, WebM · tối đa 2 GB</small>
+        </label>
+        <div class="video-wrap" id="videoWrap" hidden>
+          <video id="preview" controls playsinline></video>
+          <canvas id="selector" aria-label="Kéo để chọn vùng icon"></canvas>
+          <div class="selection-hint">Kéo chuột quanh icon</div>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <div class="step"><span>01</span><div><strong>Nguồn video</strong><p id="fileMeta">Chưa chọn tệp</p></div></div>
+        <div class="step"><span>02</span><div><strong>Vùng cần sửa</strong><p id="regionMeta">Chưa chọn vùng</p></div></div>
+        <div class="coords">
+          <label>X<input id="x" type="number" min="0" value="0"></label>
+          <label>Y<input id="y" type="number" min="0" value="0"></label>
+          <label>W<input id="width" type="number" min="8" value="0"></label>
+          <label>H<input id="height" type="number" min="8" value="0"></label>
+        </div>
+        <label class="rights"><input id="rights" type="checkbox"><span>Tôi sở hữu video hoặc có quyền chỉnh sửa và không dùng công cụ để che giấu nguồn.</span></label>
+        <button id="processButton" disabled><span>Xử lý video</span><b>→</b></button>
+        <p class="fineprint">Luồng hình phải mã hóa lại nên dung lượng file có thể thay đổi nhẹ. Video không bị crop hay resize.</p>
+        <div id="status" role="status" aria-live="polite"></div>
+      </aside>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
+
