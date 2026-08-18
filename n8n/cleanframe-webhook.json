@@ -1,0 +1,61 @@
+{
+  "name": "CleanFrame - Authorized Icon Removal",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cleanframe/process",
+        "responseMode": "responseNode",
+        "options": { "binaryPropertyName": "video" }
+      },
+      "id": "cleanframe-webhook",
+      "name": "Receive video",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "cleanframe-process"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://cleanframe:8765/api/process",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            { "parameterType": "formBinaryData", "name": "video", "inputDataFieldName": "video" },
+            { "name": "x", "value": "={{ $json.body.x || 950 }}" },
+            { "name": "y", "value": "={{ $json.body.y || 1730 }}" },
+            { "name": "width", "value": "={{ $json.body.width || 70 }}" },
+            { "name": "height", "value": "={{ $json.body.height || 70 }}" },
+            { "name": "rights_attested", "value": "={{ $json.body.rights_attested === true || $json.body.rights_attested === 'true' }}" }
+          ]
+        },
+        "options": { "response": { "response": { "responseFormat": "file" } } }
+      },
+      "id": "cleanframe-http",
+      "name": "Process authorized video",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [520, 300]
+    },
+    {
+      "parameters": { "respondWith": "binary", "options": { "responseDataSource": "binary" } },
+      "id": "cleanframe-response",
+      "name": "Return MP4",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [800, 300]
+    }
+  ],
+  "connections": {
+    "Receive video": { "main": [[{ "node": "Process authorized video", "type": "main", "index": 0 }]] },
+    "Process authorized video": { "main": [[{ "node": "Return MP4", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "versionId": "cleanframe-v1",
+  "meta": { "templateCredsSetupCompleted": true },
+  "tags": []
+}
+

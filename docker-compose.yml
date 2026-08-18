@@ -1,0 +1,42 @@
+services:
+  cleanframe:
+    build: .
+    ports:
+      - "8765:8765"
+    volumes:
+      - cleanframe_audit:/app/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=4g,mode=1777
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8765/')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:1.109.2
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=${N8N_HOST:-localhost}
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=${N8N_PROTOCOL:-http}
+      - WEBHOOK_URL=${WEBHOOK_URL:-http://localhost:5678/}
+      - N8N_SECURE_COOKIE=${N8N_SECURE_COOKIE:-false}
+    volumes:
+      - n8n_data:/home/node/.n8n
+    depends_on:
+      cleanframe:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  cleanframe_audit:
+  n8n_data:
+
