@@ -29,7 +29,6 @@ services:
       - N8N_PROTOCOL=${N8N_PROTOCOL:-http}
       - N8N_WEBHOOK_URL=${N8N_WEBHOOK_URL:-http://localhost:5678/}
       - N8N_SECURE_COOKIE=${N8N_SECURE_COOKIE:-false}
-      - N8N_RUNNERS_ENABLED=${N8N_RUNNERS_ENABLED:-false}
     volumes:
       - n8n_data:/home/node/.n8n
     depends_on:
