@@ -15,7 +15,7 @@ python -m pip install -r requirements.txt
 .\run.ps1
 ```
 
-Open `http://127.0.0.1:8765`, choose a video, drag a rectangle around the static icon, confirm your rights, and process the file.
+Open `http://127.0.0.1:8765`, choose a video, drag a rectangle around the static icon, select the closest logo shape, confirm your rights, and process the file. Diamond mode is tuned for Gemini-style sparkle icons and avoids changing the corners of the selected rectangle.
 
 ## Verify
 
@@ -33,5 +33,5 @@ ffprobe -v error -show_streams -show_format -of json output.mp4
 ## Known limits
 
 - Version 1 handles icons that stay in one position for the full clip.
-- Inpainting estimates pixels from the region boundary; results depend on background motion and logo size.
+- Shape-aware inpainting estimates pixels from the mask boundary; results depend on background motion, logo size, and selection accuracy.
 - Output byte size can vary because modified video frames must be encoded again.

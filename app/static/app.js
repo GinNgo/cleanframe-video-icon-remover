@@ -51,7 +51,7 @@ rights.addEventListener('change', refreshButton); input.addEventListener('change
 dropzone.addEventListener('drop', event => loadFile(event.dataTransfer.files[0]));
 button.addEventListener('click', async () => {
   button.disabled=true; setStatus('Đang xử lý… Video dài có thể mất vài phút.');
-  const form = new FormData(); form.append('video',selectedFile); fields.forEach(field => form.append(field.id,field.value)); form.append('rights_attested','true');
+  const form = new FormData(); form.append('video',selectedFile); fields.forEach(field => form.append(field.id,field.value)); form.append('mask_shape',document.querySelector('#mask_shape').value); form.append('rights_attested','true');
   try {
     const response = await fetch('/api/process',{method:'POST',body:form});
     if (!response.ok) { const data=await response.json(); throw new Error(data.detail || 'Xử lý thất bại'); }
@@ -60,4 +60,3 @@ button.addEventListener('click', async () => {
   } catch (error) { setStatus(error.message,true); }
   finally { refreshButton(); }
 });
-

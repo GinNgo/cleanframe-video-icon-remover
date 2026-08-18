@@ -42,6 +42,13 @@
           <label>W<input id="width" type="number" min="8" value="0"></label>
           <label>H<input id="height" type="number" min="8" value="0"></label>
         </div>
+        <label class="shape-field">Hình dạng logo
+          <select id="mask_shape">
+            <option value="diamond">Kim cương / Gemini</option>
+            <option value="ellipse">Tròn / oval</option>
+            <option value="rectangle">Chữ nhật</option>
+          </select>
+        </label>
         <label class="rights"><input id="rights" type="checkbox"><span>Tôi sở hữu video hoặc có quyền chỉnh sửa và không dùng công cụ để che giấu nguồn.</span></label>
         <button id="processButton" disabled><span>Xử lý video</span><b>→</b></button>
         <p class="fineprint">Luồng hình phải mã hóa lại nên dung lượng file có thể thay đổi nhẹ. Video không bị crop hay resize.</p>
@@ -52,4 +59,3 @@
   <script src="/app.js"></script>
 </body>
 </html>
-

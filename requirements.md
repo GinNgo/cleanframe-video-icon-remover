@@ -17,6 +17,7 @@ Build a local web tool that accepts a user-owned video, lets the user mark a sta
 - `FR-04`: Validate the selected rectangle against the source dimensions.
 - `FR-05`: Remove a static icon with FFmpeg's `delogo` filter while preserving dimensions, frame rate, duration, and audio.
 - `FR-06`: Return an MP4 download and record checksum, source metadata, selected region, and timestamp in a local audit log.
+- `FR-07`: Support diamond, ellipse, and rectangle masks so Gemini-style icons can be removed without blurring the full bounding box.
 
 ## Non-functional requirements
 
@@ -41,4 +42,3 @@ Build a local web tool that accepts a user-owned video, lets the user mark a sta
 
 - Code, validation, audit trail, tests, security notes, usage docs, and rollback-by-deletion are present.
 - Sample processing confirms dimensions, FPS, duration, and audio are retained.
-

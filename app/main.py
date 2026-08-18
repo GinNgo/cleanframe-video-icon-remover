@@ -31,6 +31,7 @@ async def process_upload(
     y: int = Form(...),
     width: int = Form(...),
     height: int = Form(...),
+    mask_shape: str = Form("diamond"),
     rights_attested: bool = Form(False),
 ):
     if not rights_attested:
@@ -53,8 +54,8 @@ async def process_upload(
         info = probe_video(source)
         region = normalize_region(x, y, width, height, info)
         checksum = sha256_file(source)
-        process_video(source, output, region, info)
-        write_audit_event(AUDIT_LOG, video.filename or source.name, checksum, info, region)
+        process_video(source, output, region, info, mask_shape)
+        write_audit_event(AUDIT_LOG, video.filename or source.name, checksum, info, region, mask_shape)
     except HTTPException:
         remove_tree(work_dir)
         raise
@@ -76,4 +77,3 @@ async def process_upload(
 
 
 app.mount("/", StaticFiles(directory=STATIC_DIR, html=True), name="static")
-

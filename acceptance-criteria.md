@@ -7,4 +7,4 @@
 - `AC-05`: Given valid input and rights attestation, when processing completes, then output width, height, FPS, duration tolerance (<= 0.1 s), and audio presence match the input.
 - `AC-06`: Given successful processing, when the result is returned, then the audit log includes timestamp, checksum, metadata, and rectangle.
 - `AC-07`: Given the service is opened on mobile or desktop, then all primary controls remain visible and usable without horizontal page overflow.
-
+- `AC-08`: Given a diamond, ellipse, or rectangular icon, when the matching mask shape is selected, then pixels outside that mask remain untouched by the removal filter.

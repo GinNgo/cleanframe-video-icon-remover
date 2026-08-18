@@ -24,10 +24,11 @@
         "bodyParameters": {
           "parameters": [
             { "parameterType": "formBinaryData", "name": "video", "inputDataFieldName": "video" },
-            { "name": "x", "value": "={{ $json.body.x || 950 }}" },
-            { "name": "y", "value": "={{ $json.body.y || 1730 }}" },
-            { "name": "width", "value": "={{ $json.body.width || 70 }}" },
-            { "name": "height", "value": "={{ $json.body.height || 70 }}" },
+            { "name": "x", "value": "={{ $json.body.x || 844 }}" },
+            { "name": "y", "value": "={{ $json.body.y || 1688 }}" },
+            { "name": "width", "value": "={{ $json.body.width || 112 }}" },
+            { "name": "height", "value": "={{ $json.body.height || 102 }}" },
+            { "name": "mask_shape", "value": "={{ $json.body.mask_shape || 'diamond' }}" },
             { "name": "rights_attested", "value": "={{ $json.body.rights_attested === true || $json.body.rights_attested === 'true' }}" }
           ]
         },
@@ -58,4 +59,3 @@
   "meta": { "templateCredsSetupCompleted": true },
   "tags": []
 }
-
